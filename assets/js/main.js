@@ -9,6 +9,7 @@ const counterItems = document.querySelectorAll("[data-counter-target]");
 const contactForm = document.querySelector("[data-contact-form]");
 const formStatus = document.querySelector("[data-form-status]");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pageLocale = document.documentElement.lang || "vi-VN";
 
 body.classList.add("js-enabled");
 
@@ -19,19 +20,21 @@ const updateHeader = () => {
 
 const closeMenu = () => {
   if (!navToggle || !menu) return;
+  const openLabel = navToggle.dataset.labelOpen || "Mở menu";
   menu.classList.remove("is-open");
   navToggle.classList.remove("is-open");
   navToggle.setAttribute("aria-expanded", "false");
-  navToggle.setAttribute("aria-label", "Mở menu");
+  navToggle.setAttribute("aria-label", openLabel);
   body.classList.remove("nav-open");
 };
 
 const openMenu = () => {
   if (!navToggle || !menu) return;
+  const closeLabel = navToggle.dataset.labelClose || "Đóng menu";
   menu.classList.add("is-open");
   navToggle.classList.add("is-open");
   navToggle.setAttribute("aria-expanded", "true");
-  navToggle.setAttribute("aria-label", "Đóng menu");
+  navToggle.setAttribute("aria-label", closeLabel);
   body.classList.add("nav-open");
 };
 
@@ -91,7 +94,7 @@ filterButtons.forEach((button) => {
 const setCounterValue = (item, value) => {
   const target = Number(item.dataset.counterTarget || 0);
   const isYear = target >= 1900 && target <= 2100;
-  item.textContent = isYear ? String(value) : new Intl.NumberFormat("vi-VN").format(value);
+  item.textContent = isYear ? String(value) : new Intl.NumberFormat(pageLocale).format(value);
 };
 
 const animateCounter = (item) => {
@@ -161,12 +164,14 @@ if (contactForm && formStatus) {
     event.preventDefault();
 
     if (!contactForm.checkValidity()) {
-      formStatus.textContent = "Vui lòng điền đầy đủ thông tin bắt buộc trước khi gửi.";
+      formStatus.textContent =
+        contactForm.dataset.messageInvalid || "Vui lòng điền đầy đủ thông tin bắt buộc trước khi gửi.";
       contactForm.reportValidity();
       return;
     }
 
-    formStatus.textContent = "Cảm ơn quý khách. B&T sẽ liên hệ lại trong thời gian sớm nhất.";
+    formStatus.textContent =
+      contactForm.dataset.messageSuccess || "Cảm ơn quý khách. B&T sẽ liên hệ lại trong thời gian sớm nhất.";
     contactForm.reset();
   });
 }

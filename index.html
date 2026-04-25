@@ -15,12 +15,15 @@
     />
     <meta property="og:image" content="assets/images/hero-foundation.jpg" />
     <meta property="og:type" content="website" />
+    <link rel="alternate" hreflang="vi" href="index.html" />
+    <link rel="alternate" hreflang="en" href="index-en.html" />
+    <link rel="alternate" hreflang="zh-CN" href="index-zh.html" />
     <link rel="icon" href="favicon.png" type="image/png" />
     <link rel="preload" href="assets/images/hero-foundation.jpg" as="image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -102,6 +105,8 @@
             class="nav-toggle"
             type="button"
             aria-label="Mở menu"
+            data-label-open="Mở menu"
+            data-label-close="Đóng menu"
             aria-expanded="false"
             aria-controls="main-menu"
             data-nav-toggle
@@ -120,6 +125,11 @@
             <a href="#capacity">Năng lực</a>
             <a href="#contact">Liên hệ</a>
             <a class="nav-cta" href="assets/hsnl.pdf" target="_blank" rel="noopener">Hồ sơ năng lực</a>
+            <div class="language-switcher" aria-label="Chọn ngôn ngữ">
+              <a class="is-active" href="index.html" aria-current="page">VI</a>
+              <a href="index-en.html">EN</a>
+              <a href="index-zh.html">中文</a>
+            </div>
           </div>
         </div>
       </nav>
@@ -647,7 +657,13 @@
           <div class="contact-card reveal">
             <p class="eyebrow">Liên hệ</p>
             <h2>Gửi thông tin công trình để đội ngũ kỹ thuật B&amp;T tư vấn phương án phù hợp</h2>
-            <form class="contact-form" data-contact-form novalidate>
+            <form
+              class="contact-form"
+              data-contact-form
+              data-message-invalid="Vui lòng điền đầy đủ thông tin bắt buộc trước khi gửi."
+              data-message-success="Cảm ơn quý khách. B&amp;T sẽ liên hệ lại trong thời gian sớm nhất."
+              novalidate
+            >
               <div class="form-row">
                 <label for="fullname">Họ và tên</label>
                 <input id="fullname" name="fullname" type="text" autocomplete="name" required />

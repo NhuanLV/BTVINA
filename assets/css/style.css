@@ -29,7 +29,7 @@ body {
   margin: 0;
   color: var(--text);
   background: var(--white);
-  font-family: "Be Vietnam Pro", Inter, Arial, sans-serif;
+  font-family: "Be Vietnam Pro", Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.75;
   text-rendering: optimizeLegibility;
@@ -240,6 +240,40 @@ textarea:focus-visible {
 
 .nav-cta:hover {
   background: #b42318;
+}
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-height: 38px;
+  padding: 3px;
+  background: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.language-switcher a {
+  display: inline-flex;
+  min-width: 36px;
+  min-height: 30px;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  color: var(--primary);
+  border-radius: 3px;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.language-switcher a::after {
+  display: none;
+}
+
+.language-switcher a:hover,
+.language-switcher a.is-active {
+  color: var(--white);
+  background: var(--primary);
 }
 
 .nav-toggle {
@@ -1354,6 +1388,16 @@ body.js-enabled .reveal.is-visible {
   .nav-cta {
     justify-content: center;
     margin-top: 6px;
+  }
+
+  .language-switcher {
+    width: 100%;
+    justify-content: stretch;
+    margin-top: 6px;
+  }
+
+  .language-switcher a {
+    flex: 1;
   }
 
   .brand small {
